@@ -3,6 +3,7 @@ package br.com.emprestimo.model.dto;
 import java.math.BigDecimal;
 
 import br.com.emprestimo.model.Cliente;
+import br.com.emprestimo.model.Conta;
 
 public class ContaDto {
 	
@@ -33,6 +34,11 @@ public class ContaDto {
 
 	public int getAgencia() {
 		return agencia;
+	}
+	
+	public Conta converte() {
+		Conta conta = new Conta (cliente, saldo, numero, agencia);
+		return conta;	
 	}
 	
 }

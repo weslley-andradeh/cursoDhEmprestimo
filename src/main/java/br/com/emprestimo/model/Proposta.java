@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Proposta {
@@ -17,22 +18,27 @@ public class Proposta {
 	private int id;
 
 	private BigDecimal valor;
-	private Double taxaJuros;
+	private BigDecimal taxaJuros;
 	private int quantidadeParcelas;
+	
+	@OneToMany(mappedBy = "proposta")
+	private Parcela parcela;
 
 	@ManyToOne
 	private Cliente cliente;
 
 	private LocalDate dataContratacao;
+	private int tempoMinimoContratacao;
 	private boolean status;
 
-	public Proposta(BigDecimal valor, Double taxaJuros, int quantidadeParcelas, Cliente cliente) {
+	public Proposta(BigDecimal valor, BigDecimal taxaJuros, int quantidadeParcelas, Cliente cliente) {
 		super();
 		this.valor = valor;
 		this.taxaJuros = taxaJuros;
 		this.quantidadeParcelas = quantidadeParcelas;
 		this.cliente = cliente;
 		this.dataContratacao = LocalDate.now();
+		this.tempoMinimoContratacao = 3; 
 	}
 	
 	public Proposta() {
@@ -47,7 +53,7 @@ public class Proposta {
 		return valor;
 	}
 
-	public Double getTaxaJuros() {
+	public BigDecimal getTaxaJuros() {
 		return taxaJuros;
 	}
 
@@ -65,6 +71,18 @@ public class Proposta {
 
 	public boolean isStatus() {
 		return status;
+	}
+
+	public int getTempoMinimoContratacao() {
+		return tempoMinimoContratacao;
+	}
+
+	public void setParcela(Parcela parcela) {
+		this.parcela = parcela;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
 }

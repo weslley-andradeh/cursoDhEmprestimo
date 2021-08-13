@@ -21,10 +21,9 @@ public class Parcela {
 	private boolean status;
 	private int propostaId;
 	
-	public Parcela(BigDecimal valor, int numero, LocalDate dataParcela, int propostaId) {
-		super();
+	public Parcela(BigDecimal valor, LocalDate dataParcela, int propostaId) {
 		this.valor = valor;
-		this.numero = numero;
+		this.numero = 1;
 		this.dataParcela = dataParcela;
 		this.propostaId = propostaId;
 	}

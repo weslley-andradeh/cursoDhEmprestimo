@@ -2,6 +2,7 @@ package br.com.emprestimo.model.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,11 @@ public class ClienteDto {
 		Cliente cliente = new Cliente (nome, salario, patrimonio, cpf);
 		propostas.forEach(p -> cliente.adicionaProposta(p));
 		return cliente;
+	}
+	
+	public Integer getTempoServico() {
+		Period tempoServico = Period.between(dataContratacao, LocalDate.now());
+		return tempoServico.getMonths();
 	}
 	
 }

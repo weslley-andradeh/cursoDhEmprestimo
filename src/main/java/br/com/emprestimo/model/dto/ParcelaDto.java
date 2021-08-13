@@ -3,6 +3,8 @@ package br.com.emprestimo.model.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import br.com.emprestimo.model.Parcela;
+
 public class ParcelaDto {
 	
 	private BigDecimal valor;
@@ -11,12 +13,12 @@ public class ParcelaDto {
 	private boolean status;
 	private int propostaId;
 	
-	public ParcelaDto(BigDecimal valor, int numero, LocalDate dataParcela, boolean status, int propostaId) {
+	public ParcelaDto(BigDecimal valor, LocalDate dataParcela, boolean status, int parcelaId) {
 		this.valor = valor;
-		this.numero = numero;
+		this.numero = 1;
 		this.dataParcela = dataParcela;
 		this.status = status;
-		this.propostaId = propostaId;
+		this.propostaId = parcelaId;
 	}
 
 	public BigDecimal getValor() {
@@ -37,6 +39,11 @@ public class ParcelaDto {
 
 	public int getPropostaId() {
 		return propostaId;
+	}
+	
+	public Parcela converte() {
+		Parcela parcela = new Parcela (valor, dataParcela, propostaId);
+		return parcela;	
 	}
 	
 }
